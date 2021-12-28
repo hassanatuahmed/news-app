@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 import 'package:res/models/new_info.dart';
 import 'package:res/services/api_manager.dart';
 
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News App'),
+        title: const Text('News App'),
       ),
       body: Container(
         child: FutureBuilder<NewsModel>(
@@ -33,8 +32,8 @@ class _HomePageState extends State<HomePage> {
                   itemCount: snapshot.data.articles.length,
                   itemBuilder: (context, index) {
                     var article = snapshot.data.articles[index];
-                    var formattedTime = DateFormat('dd MMM - HH:mm')
-                        .format(article.publishedAt);
+                    // var formattedTime = DateFormat('dd MMM - HH:mm')
+                    //     .format(article.publishedAt);
                     return Container(
                       height: 100,
                       margin: const EdgeInsets.all(8),
@@ -52,16 +51,16 @@ class _HomePageState extends State<HomePage> {
                                   fit: BoxFit.cover,
                                 )),
                           ),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Flexible(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(formattedTime),
+                                //Text(formattedTime),
                                 Text(
                                   article.title,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -77,13 +76,14 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   });
-            } else
-              return Center(child: CircularProgressIndicator());
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
           },
         ),
       ),
     );
   }
 
-  DateFormat(String s) {}
+ 
 }

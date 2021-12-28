@@ -1,13 +1,16 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+
 import 'package:res/constant/string.dart';
 import 'package:res/models/new_info.dart';
 
+// ignore: camel_case_types
 class API_Manager {
   Future<NewsModel> getNews() async {
     var client = http.Client();
-    var newsModel = null;
+    var newsModel;
+
     try {
       var response = await client.get(Uri.parse(Strings.news_url));
       if (response.statusCode == 200) {
@@ -19,6 +22,7 @@ class API_Manager {
     } catch (Exception) {
       return newsModel;
     }
+
     return newsModel;
   }
 }
